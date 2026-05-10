@@ -251,7 +251,9 @@ if __name__ == "__main__":
     print(f"🎯 Asset: {ASSET} | Amount: ₹{TRADE_AMOUNT} INR | Expiry: {TRADE_EXPIRY}s")
     trader.get_session()
     app.run(host="0.0.0.0", port=5000, debug=False)
-        msg = f"❌ Trade FAILED: {direction}\nError: {result}"
+        else:
+        send_telegram(TELEGRAM_CHAT_ID, f"❌ Trade FAILED: {direction}\nError: {result}")
+        return jsonify({"status": "failed", "error": result}), 500
         send_telegram(msg)
         return jsonify({"status": "failed", "error": result}), 500
 
